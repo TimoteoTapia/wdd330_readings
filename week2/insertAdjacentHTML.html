@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>read 1</title>
+  </head>
+  <body>
+    <h1>Notes Week 2</h1>
+    <h2>A reminder how to creat the elements</h2>
+    <style>
+      .alert {
+        padding: 15px;
+        border: 1px solid #d6e9c6;
+        border-radius: 4px;
+        color: #3c763d;
+        background-color: #dff0d8;
+      }
+    </style>
+    <script>
+      //Creates a new element node with the given tag: document.createElement(tag)
+      let div = document.createElement('div');
+      //Creates a new text node with the given text: document.createTextNode(text)
+      let textNode = document.createTextNode('Here I am');
+      // 2. Set its class to "alert"
+      div.className = 'alert';
+
+      // 3. Fill it with the content
+      div.innerHTML =
+        "<strong>Hi there!</strong> You've read an important message.";
+
+      document.body.append(div);
+    </script>
+    <!-- it is what the script is creating-->
+    <!-- <div class="alert">
+      <strong>Hi there!</strong> You've read an important message.
+    </div> -->
+    <br />
+    <h2>how to create an text before and after from an element</h2>
+    <ol id="ol">
+      <li>0</li>
+      <li>1</li>
+      <li>2</li>
+    </ol>
+
+    <script>
+      ol.before('before'); // insert string "before" before <ol>
+      ol.after('after'); // insert string "after" after <ol>
+
+      let liFirst = document.createElement('li');
+      liFirst.innerHTML = 'prepend';
+      ol.prepend(liFirst); // insert liFirst at the beginning of <ol>
+
+      let liLast = document.createElement('li');
+      liLast.innerHTML = 'append';
+      ol.append(liLast); // insert liLast at the end of <ol>
+    </script>
+    <br />
+    <hr />
+    <h2>insertAdjacentHTML/Text/Element</h2>
+
+    <div id="test">TEST</div>
+    <script>
+      test.insertAdjacentHTML('beforebegin', '<p>Hello</p>');
+      test.insertAdjacentHTML('afterend', '<p>Bye</p>');
+    </script>
+    <script>
+      document.body.insertAdjacentHTML(
+        'afterbegin',
+        `<div class="alert">
+            <strong>Hi there!</strong> It is a insertAdjacentHTML test.
+          </div>`
+      );
+    </script>
+    <img
+      src="images/insertAdjacentHTML.png
+    "
+      alt="insertAdjacentHTML"
+    />
+  </body>
+</html>

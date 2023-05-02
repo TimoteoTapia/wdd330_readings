@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>read 2</title>
+  </head>
+  <body>
+    <h2>localStorage demo</h2>
+    <p id="local"></p>
+    <script>
+      //the value stores in the localstorage (it just stores strings)
+      localStorage.setItem('test', 1);
+
+      //by this way I can get and use the the variables and values
+      //stored in localstore
+      alert(localStorage.getItem('test'));
+      //NOTE: I can even get the values from other files(codes) or project
+      //if the variable and vulue have been saved
+
+      // remove key
+      delete localStorage.test;
+
+      const setLocalStorage = () => {
+        let persona = {
+          nombre: 'Fernando',
+          edad: 31,
+          correo: 'sdflk@com',
+          coords: {
+            lat: 10,
+            lng: -5,
+          },
+        };
+        let nombre = 'Pedro';
+        localStorage.setItem('usuario', nombre);
+
+        // local just accept strings and not objects
+        localStorage.setItem('persona', JSON.stringify(persona));
+      };
+      setLocalStorage();
+
+      const getLocalStorage = () => {
+        // if usuario exist in localstorage
+        if (localStorage.getItem('usuario')) {
+          let nombre = localStorage.getItem('usuario');
+          //convert a string to object
+          let persona = JSON.parse(localStorage.getItem('persona'));
+
+          console.log(nombre);
+          console.log(persona);
+        } else {
+          console.log('no hay nada almacenado en localstorage');
+        }
+      };
+      getLocalStorage();
+    </script>
+    <p>
+      If I want to see the data store: open the page in Chrome browser and see
+      aplicacion into developer tools. Check localstorage.html to see the code
+      implemented to Set and Get data in localStorage
+    </p>
+  </body>
+</html>
