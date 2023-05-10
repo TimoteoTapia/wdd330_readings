@@ -11,16 +11,16 @@
     <p id="local"></p>
     <script>
       //the value stores in the localstorage (it just stores strings)
-      localStorage.setItem('test', 1);
+      localStorage.setItem('num', 1);
 
       //by this way I can get and use the the variables and values
       //stored in localstore
-      alert(localStorage.getItem('test'));
+      alert(localStorage.getItem('num'));
       //NOTE: I can even get the values from other files(codes) or project
       //if the variable and vulue have been saved
 
       // remove key
-      delete localStorage.test;
+      delete localStorage.num;
 
       const setLocalStorage = () => {
         let persona = {
@@ -60,5 +60,23 @@
       aplicacion into developer tools. Check localstorage.html to see the code
       implemented to Set and Get data in localStorage
     </p>
+    <p>the value stores in the localstorage (it just stores strings)</p>
+    <p>localStorage.setItem('num', 1);</p>
+    <h3>
+      The nexto code I am using to store and object and a user in my localstore
+    </h3>
+    <p>
+      const setLocalStorage = () => { let persona = { nombre: 'Fernando', edad:
+      31, correo: 'sdflk@com', coords: { lat: 10, lng: -5, }, }; let nombre =
+      'Pedro'; localStorage.setItem('usuario', nombre); // local just accept
+      strings and not objects localStorage.setItem('persona',
+      JSON.stringify(persona)); };
+    </p>
+    <br />
+    <p>
+      I have to remember I can just save strings in my localstore, I had to
+      convert my object to a string
+    </p>
+    <img src="localstorage.PNG" alt="my localstorage" />
   </body>
 </html>
