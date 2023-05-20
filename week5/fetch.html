@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 05 | Notes</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-image: url(../week5/images/leaves.avif);
+        background-size: cover;
+        background-position: center;
+        padding: 20px;
+        color: #ffffff;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: rgba(0, 0, 0, 0.85);
+        padding: 40px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .summary {
+        margin-bottom: 40px;
+      }
+
+      .summary-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .summary-link {
+        text-decoration: none;
+        font-size: 14px;
+        margin-bottom: 10px;
+        opacity: 0.8;
+        color: rgb(45, 254, 73);
+      }
+
+      .summary-content {
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 20px;
+      }
+    </style>
+    <style>
+      pre {
+        font-family: Consolas, monospace;
+        background-color: #1f1f1f;
+        color: #ffffff;
+        padding: 10px;
+      }
+
+      .comment {
+        color: #57a64a;
+      }
+
+      .string {
+        color: #ce9178;
+      }
+
+      .keyword {
+        color: #569cd6;
+      }
+
+      .variable {
+        color: #9cdcfe;
+      }
+
+      .function {
+        color: #dcdcaa;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Reading Notes</h1>
+      <div class="summary">
+        <h2 class="summary-title">Fetch</h2>
+        <p>It is use to send and request to the server data from a database</p>
+        <p>This is a request example by fetch</p>
+        <br />
+        <p>
+          <a style="color: blue">let</a> promise =
+          <a style="color: rgb(24, 132, 0)">fetch</a>(<a
+            style="color: rgb(186, 2, 2)"
+            >url, [options]</a
+          >)
+        </p>
+        <ul>
+          <li>url – the URL to access.</li>
+          <li>options – optional parameters: method, headers etc.</li>
+        </ul>
+        <p>
+          if the statement is not using a the second parameter[option], it works
+          as a GET reques. Otherwise, using the second parameter is consulting
+          another parameter
+        </p>
+        <div style="text-align: center">
+          <h2>Image of fetch structure</h2>
+          <img
+            src="images/fetchStructure.PNG"
+            alt="fetchStructure"
+            width="750"
+          />
+        </div>
+        <p>
+          Fetch return a promise, it is an Asynchronous variable that have to
+          wait until all the value has been loaded, for that reason it is used
+          await up to get a response, it is important to consider to use an awat
+          method is neceesary use an async function.
+        </p>
+        <p>
+          Once the response is gotten. We can use an if statemente with a
+          built-in HTTP-status(.ok), in case it is succesfully complete it may
+          be holded the body in various formats using again the await method
+        </p>
+        <h2>How to use Post method</h2>
+        <pre>
+      <span class="comment">// Define the user object</span>
+      <span class="keyword">let</span> <span class="variable">user</span> = {
+        <span class="variable">name</span>: <span class="string">'John'</span>,
+        <span class="variable">surname</span>: <span class="string">'Smith'</span>
+      };
+  
+      <span class="comment">// Make a POST request to the server</span>
+      <span class="keyword">let</span> <span class="variable">response</span> = <span class="keyword">await</span> <span class="variable">fetch</span>('/article/fetch/post/user', {
+        <span class="variable">method</span>: <span class="string">'POST'</span>,
+        <span class="variable">headers</span>: {
+          <span class="string">'Content-Type'</span>: <span class="string">'application/json;charset=utf-8'</span>
+        },
+        <span class="variable">body</span>: <span class="variable">JSON</span>.<span class="variable">stringify</span>(<span class="variable">user</span>)
+      });
+  
+      <span class="comment">// Retrieve the response data as JSON</span>
+      <span class="keyword">let</span> <span class="variable">result</span> = <span class="keyword">await</span> <span class="variable">response</span>.<span class="variable">json</span>();
+  
+      <span class="comment">// Display the result message</span>
+      <span class="variable">alert</span>(<span class="variable">result</span>.<span class="variable">message</span>);
+    </pre>
+        <p>
+          In order to make a POST request or any other HTTP request using the
+          fetch API, we can specify the method and include the request body
+          using the method and body options respectively. For instance, when
+          sending JSON data, we can create an object representing the data,
+          stringify it using JSON.stringify(), and set the Content-Type header
+          to application/json;charset=utf-8. After making the request, we can
+          handle the response by using response.json() to parse the response
+          body as JSON. Finally, we can access the desired data from the
+          response and perform further actions as needed.
+        </p>
+        <br />
+        <a
+          target="_blank"
+          class="summary-link"
+          href="https://javascript.info/fetch"
+          >Link page</a
+        >
+      </div>
+      <div class="summary">
+        <h2 class="summary-title">Fetch: Cross-Origin Requests</h2>
+
+        <div class="summary-content">
+          CORS (Cross-Origin Resource) is a mechanism that allows web browsers
+          to enforce security policies regarding cross-origin requests made by
+          web pages or web applications.
+        </div>
+        <div class="summary-content">
+          An "origin" refers to the combination of three components: the
+          protocol, the domain, and the port, which together identify the source
+          of a web page or a web application. The origin represents the specific
+          location from which a web resource is served.
+        </div>
+        <ul>
+          <li>
+            Protocol: The protocol helps determine the security context of the
+            resource. The common protocols include HTTP (Hypertext Transfer
+            Protocol) and HTTPS (HTTP Secure).
+          </li>
+          <li>
+            Domain: The domain is the name or IP address that uniquely
+            identifies a website or web application. It indicates the location
+            where the web resource is hosted. For example:
+            "https://www.example.com," the domain is "example.com."
+          </li>
+          <li>
+            Port: The port is the endpoint within a server where the web
+            resource is being served. (e.g., localhost:8080).
+          </li>
+        </ul>
+        <img src="./images/post.PNG" alt="post headings" width="700" />
+        <br />
+        <br />
+        <a
+          target="_blank"
+          href="https://javascript.info/fetch-crossorigin#summary"
+          class="summary-link"
+          >Link page</a
+        >
+
+        <div class="summary">
+          <h2 class="summary-title">Rest parameters and spread syntax</h2>
+          <div class="summary-content">
+            The "..." in JavaScript has two uses: rest parameters and spread
+            syntax.
+          </div>
+          <ul>
+            <li>
+              Rest parameters gather multiple function arguments into an array
+              and enable functions to accept any number of arguments
+            </li>
+            <li>
+              Spread Syntax expands an array into individual elements and
+              simplifies working with arrays by spreading their elements
+            </li>
+          </ul>
+          <br />
+          <a
+            target="_blank"
+            href="https://javascript.info/rest-parameters-spread"
+            class="summary-link"
+            >Link page</a
+          >
+        </div>
+        <div class="summary">
+          <h2 class="summary-title">How Single-Page Applications Work</h2>
+
+          <div class="summary-content">
+            A Single-Page Application (SPA) is a web application that loads on a
+            single page and updates the content without refreshing the entire
+            page. This provides a smoother user experience and avoids the page
+            load times between pages.
+          </div>
+          <img src="./images/location.PNG" alt="location" />
+          <br />
+          <a
+            target="_blank"
+            href="https://blog.pshrmn.com/how-single-page-applications-work/"
+            class="summary-link"
+            >Link page</a
+          >
+        </div>
+        <div class="summary">
+          <h2 class="summary-title">The Problem with Single Page Apps</h2>
+
+          <div class="summary-content">
+            Single-page applications can be complicated and available to errors
+            because of the extensive JavaScript code required for navigation. A
+            simple way to slove it is to build multi-page applications where
+            each page has its own HTML and URL. This way, I could use the
+            browser's built-in features like forward and backward buttons
+            without having to intercept links or even use complex work. By
+            loading static HTML files, you can create a fast and smooth user
+            experience.
+          </div>
+          <br />
+          <a
+            target="_blank"
+            href="https://gomakethings.com/the-problem-with-single-page-apps/"
+            class="summary-link"
+            >Link page</a
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
