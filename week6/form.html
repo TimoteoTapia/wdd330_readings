@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 04 Forms | Notes</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-image: url(../week6/images/background.jpeg);
+        background-size: cover;
+        background-position: center;
+        padding: 20px;
+        color: #ffffff;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: rgba(0, 0, 0, 0.85);
+        padding: 40px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .summary {
+        margin-bottom: 40px;
+      }
+      .summary-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      .summary-link {
+        text-decoration: none;
+        font-size: 14px;
+        margin-bottom: 10px;
+        opacity: 0.8;
+        color: rgb(45, 254, 73);
+      }
+      .summary-content {
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 20px;
+      }
+
+      .formBox {
+        margin-bottom: 10px;
+      }
+    </style>
+    <style>
+      pre {
+        font-family: Consolas, monospace;
+        background-color: #1f1f1f;
+        color: #ffffff;
+        padding: 5px;
+      }
+      .comment {
+        color: #57a64a;
+      }
+      .string {
+        color: #ce9178;
+      }
+      .keyword {
+        color: #569cd6;
+      }
+      .variable {
+        color: #9cdcfe;
+      }
+      .function {
+        color: #dcdcaa;
+      }
+      .tag {
+        color: #905;
+      }
+      .attribute {
+        color: #690;
+      }
+      .value {
+        color: #07a;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Reading Notes</h1>
+
+      <div class="summary">
+        <h2 class="summary-title">Form properties and methods</h2>
+
+        <div class="summary-content">
+          This article explains various aspects of working with forms and form
+          elements in web development. It covers topics such as accessing forms
+          and form elements using JavaScript, navigating through form elements,
+          using fieldsets to group form controls, accessing form elements using
+          shorthand notation, and understanding properties and methods for
+          different types of form controls like input, textarea, and select. The
+          article also touches on creating and manipulating option elements
+          within a select element. Overall, it provides a comprehensive overview
+          of form handling in web development.
+        </div>
+        <pre>
+        <span class="keyword">&lt;form&gt;</span>
+          <span class="keyword">&lt;label</span> <span class="keyword">for</span>=<span class="string">"name"</span><span class="keyword">&gt;</span>Name:<span class="keyword">&lt;/label&gt;</span>
+          <span class="keyword">&lt;input</span> <span class="keyword">type</span>=<span class="string">"text"</span> <span class="keyword">id</span>=<span class="string">"name"</span> <span class="keyword">name</span>=<span class="string">"name"</span> <span class="keyword">placeholder</span>=<span class="string">"Enter your name"</span><span class="keyword">&gt;</span><span class="keyword">&lt;br&gt;</span>
+
+          <span class="keyword">&lt;label</span> <span class="keyword">for</span>=<span class="string">"email"</span><span class="keyword">&gt;</span>Email:<span class="keyword">&lt;/label&gt;</span>
+          <span class="keyword">&lt;input</span> <span class="keyword">type</span>=<span class="string">"email"</span> <span class="keyword">id</span>=<span class="string">"email"</span> <span class="keyword">name</span>=<span class="string">"email"</span> <span class="keyword">placeholder</span>=<span class="string">"Enter your email"</span><span class="keyword">&gt;</span><span class="keyword">&lt;br&gt;</span>
+
+          <span class="keyword">&lt;button&gt;</span>Submit<span class="keyword">&lt;/button&gt;</span>
+        <span class="keyword">&lt;/form&gt;</span>
+
+          <span class="keyword">&lt;script&gt;</span>
+          <span class="comment">// Accessing the form using index</span>
+          <span class="keyword">let</span> form = document.forms[0];
+          <span class="comment">// Get the first form in the document</span>
+
+          <span class="comment">// Accessing form field values</span>
+          <span class="keyword">let</span> name = form.elements.name.value;
+          <span class="keyword">let</span> email = form.elements.email.value;
+
+          <span class="comment"
+            >// Perform form validation or further processing</span
+          >
+          console.log(<span class="string">"Name:"</span>, name);
+          console.log(<span class="string">"Email:"</span>, email); });
+          <span class="keyword">&lt;/script&gt;</span>
+          </pre>
+        <br />
+        <a
+          target="_blank"
+          href="https://javascript.info/form-elements"
+          class="summary-link"
+          >Link page</a
+        >
+      </div>
+
+      <div class="summary">
+        <h2 class="summary-title">Forms:Event and method submit</h2>
+
+        <div class="summary-content">
+          the reading explains the concept of form submission in JavaScript. The
+          submit event is triggered when a form is submitted, either by clicking
+          a submit button or pressing Enter on an input field. This event is
+          commonly used for form validation or to process the form data before
+          sending it to the server. By calling event.preventDefault(), we can
+          prevent the form from being submitted if there are errors or if we
+          want to handle the submission in JavaScript.
+        </div>
+        <pre>
+          &lt;<span class="tag">form</span> <span class="attribute">action</span>=<span class="value">"/submit"</span> <span class="attribute">method</span>=<span class="value">"POST"</span>&gt;
+            &lt;<span class="tag">label</span> <span class="attribute">for</span>=<span class="value">"name"</span>&gt;Name:&lt;/<span class="tag">label</span>&gt;
+            &lt;<span class="tag">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">id</span>=<span class="value">"name"</span> <span class="attribute">name</span>=<span class="value">"name"</span> <span class="attribute">placeholder</span>=<span class="value">"Enter your name"</span>&gt;&lt;br&gt;
+      
+            &lt;<span class="tag">label</span> <span class="attribute">for</span>=<span class="value">"email"</span>&gt;Email:&lt;/<span class="tag">label</span>&gt;
+            &lt;<span class="tag">input</span> <span class="attribute">type</span>=<span class="value">"email"</span> <span class="attribute">id</span>=<span class="value">"email"</span> <span class="attribute">name</span>=<span class="value">"email"</span> <span class="attribute">placeholder</span>=<span class="value">"Enter your email"</span>&gt;&lt;br&gt;
+      
+            &lt;<span class="tag">input</span> <span class="attribute">type</span>=<span class="value">"submit"</span> <span class="attribute">value</span>=<span class="value">"Submit"</span>&gt;
+          &lt;/<span class="tag">form</span>&gt;
+        </pre>
+        <br />
+        <a
+          target="_blank"
+          href="https://javascript.info/forms-submit"
+          class="summary-link"
+          >Link page</a
+        >
+      </div>
+
+      <div class="summary">
+        <h2 class="summary-title">Using FormData Objects Effectively</h2>
+
+        <div class="summary-content">
+          In summary, formData is a JavaScript object that simplifies the
+          gathering and organization of data from HTML forms, making it easier
+          to handle form submissions and interact with server-side applications.
+        </div>
+        <div class="summary-content">
+          The formData object is typically used in conjunction with JavaScript
+          to capture form values and handle form submissions programmatically.
+          You can create a new instance of the formData object using the new
+          FormData() constructor. Once you have a formData instance, you can use
+          its methods, such as append(), delete(), get(), and set(), to add,
+          remove, retrieve, or update form field values.
+        </div>
+        <form action="#" id="myForm">
+          <fieldset>
+            <legend>Registration</legend>
+            <div class="formBox">
+              <label for="firstName">First Name</label
+              ><input
+                type="text"
+                id="firstName"
+                name="firstName"
+                autocomplete="off"
+                autocapitalize="on"
+              />
+            </div>
+            <div class="formBox">
+              <label for="lastName">Last Name</label
+              ><input
+                type="text"
+                id="lastName"
+                name="lastName"
+                required
+                autocomplete="off"
+                autocapitalize="on"
+              />
+            </div>
+            <div class="formBox">
+              <label for="email">Email</label
+              ><input
+                type="email"
+                id="email"
+                name="email"
+                required
+                autocomplete="off"
+              />
+            </div>
+            <div class="formBox">
+              <label for="password">Password</label
+              ><input
+                type="password"
+                id="password"
+                name="password"
+                required
+                autocomplete="off"
+              />
+            </div>
+            <div class="formBox">
+              <label for="newsletter">Subscribe to Newsletter</label
+              ><input
+                type="checkbox"
+                id="newsletter"
+                name="newsletter"
+                checked
+              />
+            </div>
+            <div class="formBox">
+              <button id="btnSubmit">Submit</button>
+            </div>
+          </fieldset>
+        </form>
+
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            document
+              .getElementById('myForm')
+              .addEventListener('submit', handleForm);
+          });
+
+          function handleForm(ev) {
+            ev.preventDefault(); // Stop the page from reloading
+            let myForm = ev.target;
+            let formData = new FormData(myForm);
+
+            // Add more data not in the form
+            formData.append('api-key', 'myApiKey');
+
+            // Display the form data
+            for (let [key, value] of formData.entries()) {
+              console.log(`${key}: ${value}`);
+            }
+
+            // Convert form data to JSON
+            let json = convertFD2JSON(formData);
+
+            // Send the request with the form data
+            let url = 'http://localhost:3030/';
+            let headers = new Headers();
+            headers.append('Content-type', 'application/json');
+
+            let req = new Request(url, {
+              headers: headers,
+              body: json,
+              method: 'POST',
+            });
+
+            fetch(req)
+              .then((res) => res.json())
+              .then((data) => {
+                console.log('Response from server:');
+                console.log(data);
+              })
+              .catch(console.warn);
+          }
+
+          function convertFD2JSON(formData) {
+            let obj = {};
+            for (let [key, value] of formData.entries()) {
+              obj[key] = value;
+            }
+            return JSON.stringify(obj);
+          }
+        </script>
+        <br />
+        <a
+          target="_blank"
+          href="https://javascript.info/formdata"
+          class="summary-link"
+          >Link page</a
+        >
+      </div>
+      <h2 class="summary-title">MDN: Client-Side Form Validation</h2>
+
+        <div class="summary-content">
+          form validation is useful to ensuring data accuracy, protecting user information, and enhancing the user experience. By implementing both client-side and server-side validation, developers can create robust and secure web forms that deliver reliable data to the server while providing immediate feedback to users.
+        </div>
+        <div>The reading introduces two types of client-side validation commonly used on the web:</div>
+        <ol>
+          <li>Built-in form validation: This type of validation relies on HTML form validation features and requires minimal JavaScript. </li><br>
+          <li>JavaScript validation: This type of validation involves custom validation logic implemented using JavaScript. It provides more flexibility and customization options compared to built-in form validation but requires additional coding.</li>
+        </ol>
+        <div class="summary-content">
+          <h1>Registration Form</h1>
+          <form id="registrationForm">
+            <div>
+              <label for="username">Username:</label>
+              <input type="text" id="username" name="username" required>
+              <span id="usernameError" class="error"></span>
+            </div>
+            <div>
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" required>
+              <span id="emailError" class="error"></span>
+            </div>
+            <div>
+              <label for="password">Password:</label>
+              <input type="password" id="password" name="password" required>
+              <span id="passwordError" class="error"></span>
+            </div>
+            <div>
+              <label for="confirmPassword">Confirm Password:</label>
+              <input type="password" id="confirmPassword" name="confirmPassword" required>
+              <span id="confirmPasswordError" class="error"></span>
+            </div>
+            <button type="submit">Register</button>
+          </form>
+        
+          <script>
+            const form = document.getElementById('registrationForm');
+        
+            form.addEventListener('submit', function(event) {
+              event.preventDefault();
+              validateForm();
+            });
+        
+            function validateForm() {
+              const username = document.getElementById('username');
+              const email = document.getElementById('email');
+              const password = document.getElementById('password');
+              const confirmPassword = document.getElementById('confirmPassword');
+        
+              clearErrors();
+        
+              if (username.value.length < 3 || username.value.length > 10) {
+                showError('usernameError', 'Username must be between 3 and 10 characters');
+              }
+        
+              if (!validateEmail(email.value)) {
+                showError('emailError', 'Invalid email address');
+              }
+        
+              if (password.value.length < 6) {
+                showError('passwordError', 'Password must be at least 6 characters');
+              }
+        
+              if (confirmPassword.value !== password.value) {
+                showError('confirmPasswordError', 'Passwords do not match');
+              }
+            }
+        
+            function validateEmail(email) {
+              const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              return emailRegex.test(email);
+            }
+        
+            function clearErrors() {
+              const errorElements = document.getElementsByClassName('error');
+              for (let i = 0; i < errorElements.length; i++) {
+                errorElements[i].textContent = '';
+              }
+            }
+        
+            function showError(elementId, errorMessage) {
+              const errorElement = document.getElementById(elementId);
+              errorElement.textContent = errorMessage;
+            }
+          </script></div>
+        <br />
+        <a
+          target="_blank"
+          href="https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation"
+          class="summary-link"
+          >Link page</a
+        >
+      </div>
+    </div>
+  </body>
+</html>
