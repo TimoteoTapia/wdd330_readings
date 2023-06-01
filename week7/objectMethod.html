@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism-tomorrow.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+</head>
+<title>Week 07 | Notes</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url(../week7/images/background.webp);
+        background-size: auto;
+        background-position: center;
+        padding: 20px;
+        color: #ffffff;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: rgba(0, 0, 0, 0.85);
+        padding: 40px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .summary {
+        margin-bottom: 40px;
+    }
+
+    .summary-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .summary-link {
+        text-decoration: none;
+        font-size: 14px;
+        margin-bottom: 10px;
+        opacity: 0.8;
+        color: rgb(45, 254, 73);
+    }
+
+    .summary-content {
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 20px;
+    }
+
+    pre {
+        background-color: #111;
+        color: #fff;
+        padding: 10px;
+        overflow: auto;
+        border-radius: 5px;
+    }
+
+    pre code {
+        font-size: 14px;
+    }
+
+    .token.comment,
+    .token.prolog,
+    .token.doctype,
+    .token.cdata {
+        color: #808080;
+    }
+
+    .token.punctuation {
+        color: #ccc;
+    }
+
+    .token.selector,
+    .token.tag {
+        color: #e06c75;
+    }
+
+    .token.property,
+    .token.boolean,
+    .token.number,
+    .token.constant,
+    .token.symbol,
+    .token.attr-name,
+    .token.deleted {
+        color: #d19a66;
+    }
+
+    .token.string,
+    .token.char,
+    .token.attr-value,
+    .token.builtin,
+    .token.inserted {
+        color: #98c379;
+    }
+
+    .token.operator,
+    .token.entity,
+    .token.url,
+    .language-css .token.string,
+    .style .token.string {
+        color: #d19a66;
+    }
+
+    .token.atrule,
+    .token.attr-value,
+    .token.keyword {
+        color: #c678dd;
+    }
+
+    .token.function,
+    .token.class-name {
+        color: #61afef;
+    }
+
+    .token.regex,
+    .token.important,
+    .token.variable {
+        color: #e06c75;
+    }
+
+    .token.bold {
+        font-weight: bold;
+    }
+
+    .token.italic {
+        font-style: italic;
+    }
+
+    .token.entity {
+        cursor: help;
+    }
+</style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Reading Notes</h1>
+
+        <div class="summary">
+            <h2 class="summary-title">Object Methods, "This"</h2>
+
+            <div class="summary-content">
+                In object-oriented programming, objects are used to represent real
+                world entities. Objects can have properties and perform actions, which
+                are represented by functions called methods. Methods are functions
+                that are assigned as properties of an object.
+            </div>
+            <div class="summary-content">
+                The "this" keyword in JavaScript is used inside methods to refer to
+                the object on which the method is being called. It allows methods to
+                access and manipulate the object's properties. When a method is called
+                using the object.method() syntax, the value of "this" inside the
+                method refers to the object itself.
+            </div>
+            <pre>
+            <code class="language-javascript"> 
+              // Define an object with properties and methods
+              let user = {
+                firstName: "Luis",
+                lastName: "Alberto",
+                fullName: function() {
+                  return this.firstName + " " + this.lastName;
+                },
+                greet: function() {
+                  alert("Hello, " + this.fullName() + "!");
+                }
+              };
+        
+              // Call the methods of the user object
+              function sayHello() {
+                user.greet();
+              }
+            </code>
+          </pre>
+
+            <button onclick="sayHello()">Say Hello</button>
+            <script>
+                // Define an object with properties and methods
+                let user = {
+                    firstName: 'Luis',
+                    lastName: 'Aberto',
+                    fullName: function () {
+                        return this.firstName + ' ' + this.lastName;
+                    },
+                    greet: function () {
+                        alert('Hello, ' + this.fullName() + '!');
+                    },
+                };
+
+                // Call the methods of the user object
+                function sayHello() {
+                    user.greet();
+                }
+            </script>
+            <br />
+            <a target="_blank" href="https://javascript.info/object-methods" class="summary-link">Link page</a>
+            <div class="summary-content">
+                These examples highlight how the value of "this" is dynamically determined at runtime based on the
+                object invoking the method. It allows methods to access and manipulate the properties of the specific
+                object that called them, enabling flexible and reusable code in object-oriented programming.
+            </div>
+            <pre>
+        <code class="language-javascript"> 
+            function sayHello() {
+                console.log(`Hello, ${this.name}!`);
+              }
+              
+              const person1 = {
+                name: 'John',
+                greet: sayHello
+              };
+              
+              const person2 = {
+                name: 'Jane',
+                greet: sayHello
+              };
+              
+              person1.greet();  // Output: "Hello, John!"
+              person2.greet();  // Output: "Hello, Jane!"
+        </code>
+      </pre>
+        </div>
+        <div class="summary">
+            <h2 class="summary-title">CSS Animations</h2>
+
+            <div class="summary-content">
+                <ol>
+                    <li>
+                        <h3>CSS Animations:</h3>
+                        <p>CSS animations allow simple animations to be created without using JavaScript.</p>
+                    </li>
+                    <li>
+                        <h3>CSS Transitions:</h3>
+                        <p>CSS transitions are used to animate changes in CSS properties.
+                            When a property changes, the browser automatically animates the transition based on the
+                            specified duration and timing function.
+                            Transition properties include transition-property, transition-duration,
+                            transition-timing-function, and transition-delay.</p>
+                    </li>
+                    <li>
+                        <h3>Transition Properties:</h3>
+                        <ul>
+                            <li>transition-property specifies the properties to be animated.</li>
+                            <li>transition-duration determines the duration of the transition.</li>
+                            <li>transition-delay sets a delay before the transition starts.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3>Transition Timing Function:</h3>
+                        <p>The timing function describes how the animation progresses over time.</p>
+                    </li>
+                    <li>
+                        <h3>Steps:</h3>
+                        <p>The steps() timing function allows the transition to be divided into discrete steps.</p>
+                    </li>
+                    <li>
+                        <h3>Transition End Event:</h3>
+                        <p>The transitionend event is triggered when a CSS transition finishes.</p>
+                    </li>
+                </ol>
+            </div>
+
+            <style>
+                #box {
+                    width: 100px;
+                    height: 100px;
+                    background-color: blue;
+                    transition-property: background-color, transform;
+                    transition-duration: 1s;
+                }
+
+                #box.animate {
+                    background-color: red;
+                    transform: translateX(200px) rotate(180deg);
+                }
+            </style>
+            <button id="animateBtn">Animate</button>
+            <div id="box"></div>
+            <script>
+                const animateBtn = document.getElementById('animateBtn');
+                const box = document.getElementById('box');
+
+                animateBtn.addEventListener('click', function () {
+                    box.classList.add('animate');
+                });
+
+                box.addEventListener('transitionend', function () {
+                    box.classList.remove('animate');
+                });
+            </script>
+            <pre>
+            <code class="language-javascript"> 
+            <\button id="animateBtn">Animate<\/button>
+            <\div id="box"><\/div>
+                #box {
+                    width: 100px;
+                    height: 100px;
+                    background-color: blue;
+                    transition-property: background-color, transform;
+                    transition-duration: 1s;
+                }
+                //it will animate when animate class exist
+                #box.animate {
+                    background-color: red;
+                    transform: translateX(200px) rotate(180deg);
+                }
+            
+                //Code that I am using
+                const animateBtn = document.getElementById('animateBtn');
+                const box = document.getElementById('box');
+                
+                //add the new class "animate" and trigger the animation
+                animateBtn.addEventListener('click', function () {
+                    box.classList.add('animate');
+                });
+
+                //remove the class allowing repeat the animation
+                box.addEventListener('transitionend', function () {
+                    box.classList.remove('animate');
+                });
+                
+            </code>
+            </pre>
+            <br />
+            <a target="_blank" href="https://javascript.info/css-animations" class="summary-link">Link
+                page</a>
+        </div>
+    </div>
+    <script>
+        Prism.highlightAll();
+    </script>
+</body>
+
+</html>
