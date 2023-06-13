@@ -1,122 +1,43 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Object Methods in JavaScript</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css"
-    />
-    <style>
-      /* Custom styles */
-      body {
-        background-color: #111;
-        color: #fff;
-        font-family: Arial, sans-serif;
-      }
-
-      pre {
-        background-color: #111;
-        color: #fff;
-        padding: 10px;
-        overflow: auto;
-        border-radius: 5px;
-      }
-
-      pre code {
-        font-size: 14px;
-      }
-
-      .token.comment,
-      .token.prolog,
-      .token.doctype,
-      .token.cdata {
-        color: #808080;
-      }
-
-      .token.punctuation {
-        color: #ccc;
-      }
-
-      .token.selector,
-      .token.tag {
-        color: #e06c75;
-      }
-
-      .token.property,
-      .token.boolean,
-      .token.number,
-      .token.constant,
-      .token.symbol,
-      .token.attr-name,
-      .token.deleted {
-        color: #d19a66;
-      }
-
-      .token.string,
-      .token.char,
-      .token.attr-value,
-      .token.builtin,
-      .token.inserted {
-        color: #98c379;
-      }
-
-      .token.operator,
-      .token.entity,
-      .token.url,
-      .language-css .token.string,
-      .style .token.string {
-        color: #d19a66;
-      }
-
-      .token.atrule,
-      .token.attr-value,
-      .token.keyword {
-        color: #c678dd;
-      }
-
-      .token.function,
-      .token.class-name {
-        color: #61afef;
-      }
-
-      .token.regex,
-      .token.important,
-      .token.variable {
-        color: #e06c75;
-      }
-
-      .token.bold {
-        font-weight: bold;
-      }
-
-      .token.italic {
-        font-style: italic;
-      }
-
-      .token.entity {
-        cursor: help;
-      }
-    </style>
+    <title>JWT Example</title>
   </head>
   <body>
-    <h1>Object Methods in JavaScript</h1>
+    <script>
+      // Encode a JWT token
+      function encodeToken(payload, secret) {
+        const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
+        const encodedPayload = btoa(JSON.stringify(payload));
+        const signature = btoa(header + '.' + encodedPayload + '.' + secret);
+        return header + '.' + encodedPayload + '.' + signature;
+      }
 
-    <pre>
-    <code class="language-javascript">
-      // Define an object with properties and methods
-      let user = {
-        firstName: "John",
-        lastName: "Doe",
-        sayHi: function() {
-          console.log("Hello, " + this.firstName + " " + this.lastName);
-        }
-      };
+      // Decode a JWT token
+      function decodeToken(token, secret) {
+        const parts = token.split('.');
+        const encodedPayload = parts[1];
+        const decodedPayload = atob(encodedPayload);
+        return JSON.parse(decodedPayload);
+      }
 
-      // Call the method
-      user.sayHi();
-    </code>
-  </pre>
+      // Generate a JWT token
+      const secret = 'your_secret_key';
+      const payload = { userId: 123, username: 'john.doe' };
+      const token = encodeToken(payload, secret);
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+      // Display the token
+      const tokenElement = document.createElement('p');
+      tokenElement.textContent = 'JWT Token: ' + token;
+      document.body.appendChild(tokenElement);
+
+      // Verify and decode the token
+      try {
+        const decoded = decodeToken(token, secret);
+        console.log('Decoded Token:', decoded);
+      } catch (error) {
+        console.error('Token verification failed:', error.message);
+      }
+    </script>
   </body>
 </html>

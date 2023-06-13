@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism-tomorrow.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+    <title>Week 08 | Notes</title>
+    <script src="js/token.js" defer></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-image: url(../week5/images/leaves.avif);
+        background-size: cover;
+        background-position: center;
+        padding: 20px;
+        color: #ffffff;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: rgba(0, 0, 0, 0.85);
+        padding: 40px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .summary {
+        margin-bottom: 40px;
+      }
+      .summary-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      .summary-link {
+        text-decoration: none;
+        font-size: 14px;
+        margin-bottom: 10px;
+        opacity: 0.8;
+        color: rgb(45, 254, 73);
+      }
+      .summary-content {
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 20px;
+      }
+      pre {
+        background-color: #111;
+        color: #fff;
+        padding: 10px;
+        overflow: auto;
+        border-radius: 5px;
+      }
+
+      pre code {
+        font-size: 14px;
+      }
+
+      .token.comment,
+      .token.prolog,
+      .token.doctype,
+      .token.cdata {
+        color: #808080;
+      }
+
+      .token.punctuation {
+        color: #ccc;
+      }
+
+      .token.selector,
+      .token.tag {
+        color: #e06c75;
+      }
+
+      .token.property,
+      .token.boolean,
+      .token.number,
+      .token.constant,
+      .token.symbol,
+      .token.attr-name,
+      .token.deleted {
+        color: #d19a66;
+      }
+
+      .token.string,
+      .token.char,
+      .token.attr-value,
+      .token.builtin,
+      .token.inserted {
+        color: #98c379;
+      }
+
+      .token.operator,
+      .token.entity,
+      .token.url,
+      .language-css .token.string,
+      .style .token.string {
+        color: #d19a66;
+      }
+
+      .token.atrule,
+      .token.attr-value,
+      .token.keyword {
+        color: #c678dd;
+      }
+
+      .token.function,
+      .token.class-name {
+        color: #61afef;
+      }
+
+      .token.regex,
+      .token.important,
+      .token.variable {
+        color: #e06c75;
+      }
+
+      .token.bold {
+        font-weight: bold;
+      }
+
+      .token.italic {
+        font-style: italic;
+      }
+
+      .token.entity {
+        cursor: help;
+      }
+      .content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+      }
+
+      .button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+    <style></style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Reading Notes</h1>
+
+      <div class="summary">
+        <h2 class="summary-title">
+          Getting Started with JSON Web Tokens (JWT)
+        </h2>
+
+        <div class="summary-content">
+          <h3>JWT Structure:</h3>
+          <p>
+            A JWT token consists of three parts separated by dots (.) - Header,
+            Payload, and Signature. These parts are base64url encoded strings.
+          </p>
+        </br>
+          <p>Ready to generate a JWT token? Click the button below:</p>
+          <a href="#" class="button" onclick="generateToken()"
+            >Generate Token</a
+          >
+          <div
+            class="summary-content"
+            id="token"
+            style="display: flex; flex-wrap: wrap"
+          ></div>
+          <h3>Header:</h3>
+          <p>
+            The header contains metadata about the token and the algorithm used
+            for signing. It typically consists of two properties:
+          </p>
+          <pre>
+            <code class="language-javascript"> 
+              {
+                "alg": "HS256", // Algorithm used for signing (HMAC SHA256 in this example)
+                "typ": "JWT"   // Token type (JWT)
+              }
+            </code>
+            </pre>
+          <h3>Payload:</h3>
+          <p>
+            The payload contains the claims or statements about the user or
+            other information. Claims are divided into three types: Reserved
+            Claims, Public Claims, Private Claims.
+          </p>
+          <pre>
+            <code class="language-javascript"> 
+              {
+                "sub": "1234567890",  // Subject (User ID)
+                "name": "John Doe",   // User's name
+                "admin": true         // Custom claim indicating user's role
+              }
+            </code>
+            </pre>
+          <h3>Signature:</h3>
+          <p>
+            The signature is used to verify the authenticity and integrity of
+            the token. It is created by taking the encoded header, encoded
+            payload, a secret key, and signing them using the specified
+            algorithm.
+          </p>
+          <p>
+            Encoding Process: To create a JWT token, the header and payload are
+            first JSON stringified and then base64url encoded.
+          </p>
+
+          <p>
+            Decoding Process: To decode a JWT token, the token is split into its
+            three parts (header, payload, and signature). The header and payload
+            are base64url decoded, and the signature is left as-is. The decoded
+            payload contains the claims and information.
+          </p>
+          <h3>Token Usage:</h3>
+          <p>
+            JWT tokens are typically used for authentication and authorization
+            purposes. Once a user is authenticated, the server can generate a
+            JWT token and send it back to the client
+          </p>
+        </div>
+
+        <br />
+        <a
+          target="_blank"
+          href="https://auth0.com/learn/json-web-tokens?_ga=2.184084847.834837117.1611866055-1405126930.1611866055"
+          class="summary-link"
+          >Link page</a
+        >
+      </div>
+
+      <div class="summary">
+        <h2 class="summary-title">Develop, Debug, Learn?</h2>
+
+        <div class="summary-content">
+          The speaker reflects on the evolution of web development, emphasizing
+          the importance of focusing on users' needs rather than chasing trends.
+          They highlight issues like neglected projects, burnout, and the need
+          for simplicity. The speaker calls for maintaining existing code,
+          prioritizing performance, security, and accessibility, and considering
+          the impact on diverse users.
+        </div>
+      </br>
+        <h3>This is an example how to keep use good habits according to the video</h3>
+        <div class="content">
+          <h3>Welcome to Our User-Centric Website</h3>
+          <p>
+            We believe in keeping things simple and focusing on our users'
+            needs.
+          </p>
+          <p>Here are some key features of our website:</p>
+          <ul>
+            <li>Fast loading times to ensure a smooth user experience.</li>
+            <li>Clean and easy-to-understand code for maintainability.</li>
+            <li>Accessible design for users of all abilities.</li>
+            <li>Thoughtful consideration of diverse user perspectives.</li>
+          </ul>
+          <p>Ready to get started? Click the button below:</p>
+          <a href="#" class="button">Get Started</a>
+        </div>
+        <br />
+        <a
+          target="_blank"
+          href="https://www.youtube.com/watch?v=m4t7cLFksls"
+          class="summary-link"
+          >Link page</a
+        >
+      </div>
+    </div>
+    <script>
+      Prism.highlightAll();
+    </script>
+  </body>
+</html>
