@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism-tomorrow.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+    <title>Week 09 | Notes</title>
+    <script src="js/main.js" defer></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-image: url(../week7/images/background.webp);
+        background-size: cover;
+        background-position: center;
+        padding: 20px;
+        color: #ffffff;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: rgba(0, 0, 0, 0.85);
+        padding: 40px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .summary {
+        margin-bottom: 40px;
+      }
+      .summary-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      .summary-link {
+        text-decoration: none;
+        font-size: 14px;
+        margin-bottom: 10px;
+        opacity: 0.8;
+        color: rgb(45, 254, 73);
+      }
+      .summary-content {
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 20px;
+      }
+      pre {
+        background-color: #111;
+        color: #fff;
+        padding: 10px;
+        overflow: auto;
+        border-radius: 5px;
+      }
+
+      pre code {
+        font-size: 14px;
+      }
+
+      .token.comment,
+      .token.prolog,
+      .token.doctype,
+      .token.cdata {
+        color: #808080;
+      }
+
+      .token.punctuation {
+        color: #ccc;
+      }
+
+      .token.selector,
+      .token.tag {
+        color: #e06c75;
+      }
+
+      .token.property,
+      .token.boolean,
+      .token.number,
+      .token.constant,
+      .token.symbol,
+      .token.attr-name,
+      .token.deleted {
+        color: #d19a66;
+      }
+
+      .token.string,
+      .token.char,
+      .token.attr-value,
+      .token.builtin,
+      .token.inserted {
+        color: #98c379;
+      }
+
+      .token.operator,
+      .token.entity,
+      .token.url,
+      .language-css .token.string,
+      .style .token.string {
+        color: #d19a66;
+      }
+
+      .token.atrule,
+      .token.attr-value,
+      .token.keyword {
+        color: #c678dd;
+      }
+
+      .token.function,
+      .token.class-name {
+        color: #61afef;
+      }
+
+      .token.regex,
+      .token.important,
+      .token.variable {
+        color: #e06c75;
+      }
+
+      .token.bold {
+        font-weight: bold;
+      }
+
+      .token.italic {
+        font-style: italic;
+      }
+
+      .token.entity {
+        cursor: help;
+      }
+
+      #canvas {
+        border: 1px solid black;
+      }
+    </style>
+    <style></style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Reading Notes</h1>
+
+      <div class="summary">
+        <h2 class="summary-title">Variable Scope, Closure</h2>
+
+        <div class="summary-content">
+          Understanding variable scope and closures is important for working
+          with JavaScript functions and managing the visibility and
+          accessibility of variables. It allows for encapsulation, code
+          organization, and the creation of reusable functions.
+        </div>
+        <ol>
+          <li>
+            <div class="summary-content">
+              <p>
+                Variable Scope: JavaScript has three ways to declare variables:
+                let, const, and var. The article focuses on let variables but
+                mentions that const variables behave similarly. Variables
+                declared with let or const have block scope, meaning they are
+                only accessible within the block of code they are declared in.
+              </p>
+              <pre>
+                <code class="language-javascript"> 
+                    function executeScript1() {
+                        let message = "Hello";
+                        alert(message);
+                    }
+                </code>
+                </pre>
+              <button onclick="executeScript1()">Step 1: Variables</button>
+            </div>
+          </li>
+          <li>
+            <div class="summary-content">
+              <p>
+                Code Blocks: Variables declared inside a code block, denoted by
+                {...}, are only visible and accessible within that block. This
+                allows for the creation of block-local variables that are
+                specific to that block of code.
+              </p>
+              <div>
+                <pre>
+                    <code class="language-javascript">
+                        function executeScript2() {
+                            sayHello();
+                        
+                            function sayHello() {
+                                alert("Hello!");
+                            }
+                        }
+                    </code>
+                </pre>
+                <button onclick="executeScript2()">
+                  Step 2: Function Declarations
+                </button>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="summary-content">
+              <p>
+                Visibility in Control Structures: Variables declared within if,
+                for, while, and similar control structures are also block-scoped
+                and only accessible within the block they are defined in.
+              </p>
+              <div></div>
+            </div>
+          </li>
+          <li>
+            <div class="summary-content">
+              <p>
+                Nested Functions: JavaScript allows functions to be created
+                inside other functions, known as nested functions. These nested
+                functions can access variables from their outer function and
+                continue to have access to those variables even if they are
+                returned or used elsewhere.
+              </p>
+              <div>
+                <pre>
+                <code class="language-javascript">
+                    function executeScript5() {
+                        function greet(name) {
+                            return function () {
+                                alert("Hello, " + name);
+                            };
+                        }
+                    
+                        let sayHello = greet("John");
+                        let sayGoodbye = greet("Jane");
+                    
+                        sayHello();
+                        sayGoodbye();
+                    }   
+                </code>
+            </pre>
+                <button onclick="executeScript5()">Step 5: Closure</button>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="summary-content">
+              <p>
+                Lexical Environment: When a function is executed, it creates a
+                Lexical Environment, which consists of an Environment Record
+                (where local variables are stored) and a reference to the outer
+                Lexical Environment (associated with the outer code). Variables
+                are accessed by searching the Lexical Environment chain until
+                the variable is found or an error occurs.
+              </p>
+              <div>
+                <pre>
+                    <code class="language-javascript">
+                        function executeScript3() {
+                            let phrase = "Hello";
+                        
+                            function sayHello() {
+                                let name = "John";
+                                alert(phrase + ", " + name);
+                            }
+                        
+                            sayHello();
+                        }
+                    </code>
+                </pre>
+                <button onclick="executeScript3()">
+                  Step 3: Inner and outer Lexical Environment
+                </button>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="summary-content">
+              <p>
+                Returning Functions: Functions in JavaScript retain a reference
+                to their Lexical Environment, even if they are returned from the
+                original function. This concept is called closure. It allows
+                returned functions to still access and modify the variables from
+                their original Lexical Environment.
+              </p>
+              <div>
+                <pre>
+                <code class="language-javascript">
+                    function executeScript4() {
+                        function makeCounter() {
+                            let count = 0;
+                    
+                            return function () {
+                                return count++;
+                            };
+                        }
+                    
+                        let counter = makeCounter();
+                    
+                        alert(counter()); // 0
+                        alert(counter()); // 1
+                        alert(counter()); // 2
+                    }  
+                </code>
+            </pre>
+                <button onclick="executeScript4()">
+                  Step 4: Returning a function
+                </button>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="summary-content">
+              <p>
+                Garbage Collection: Lexical Environments are typically removed
+                from memory when they become unreachable. However, if a nested
+                function retains a reference to its Lexical Environment, it
+                remains in memory. This can lead to memory retention if multiple
+                functions retain references to their respective Lexical
+                Environments.
+              </p>
+              <div>
+                <pre>
+                <code class="language-javascript">
+                    function executeScript6() {
+                        function createFunction() {
+                            let value = Math.random();
+                    
+                            return function () {
+                                alert(value);
+                            };
+                        }
+                    
+                        let fn = createFunction();
+                        fn();
+                    
+                        fn = null;
+                    }
+                </code>
+            </pre>
+                <button onclick="executeScript6()">
+                  Step 6: Garbage collection
+                </button>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="summary-content">
+              <p>
+                Real-life Optimizations: JavaScript engines may optimize
+                variable usage by analyzing the code. If it's determined that an
+                outer variable is not used, it may be removed. This optimization
+                can affect debugging, as the removed variable won't be
+                accessible during debugging.
+              </p>
+              <div>
+                <pre>
+                <code class="language-javascript">
+                    function executeScript7() {
+                        let value = "Surprise!";
+                    
+                        function outerFunction() {
+                            let value = "the closest value";
+                    
+                            function innerFunction() {
+                                debugger;
+                            }
+                    
+                            return innerFunction;
+                        }
+                    
+                        let fn = outerFunction();
+                        fn();
+                    }
+                </code>
+            </pre>
+                <button onclick="executeScript7()">
+                  Step 7: Real-life optimizations
+                </button>
+              </div>
+            </div>
+          </li>
+        </ol>
+        <br />
+        <a
+          target="_blank"
+          href="https://javascript.info/closure"
+          class="summary-link"
+          >Link page</a
+        >
+      </div>
+
+      <div class="summary">
+        <h2 class="summary-title">Currying</h2>
+
+        <div class="summary-content">
+          Currying is a technique used to transform a function that takes
+          multiple arguments into a sequence of functions, each taking a single
+          argument. It allows you to create partially applied functions by
+          fixing some of the arguments in advance.
+        </div>
+        <div class="summary-content">
+          currying is typically implemented by returning nested functions, where
+          each function takes one argument and returns another function until
+          all the arguments are fulfilled.
+        </div>
+        <div class="summary-content">
+          currying is a powerful technique that enhances code modularity,
+          enables function composition, and provides flexibility in function
+          invocation. Flexibility and code reusability
+        </div>
+        <pre>
+            <code class="language-javascript">
+                function add(a) {
+                    return function (b) {
+                        return a + b;
+                    };
+                }
+                
+                function multiply(a) {
+                    return function (b) {
+                        return a * b;
+                    };
+                }
+                
+                function runExample() {
+                    var addTwo = add(2);
+                    var addTen = add(10);
+                    var multiplyByTwo = multiply(2);
+                    var multiplyByThree = multiply(3);
+                    var multiplyByFive = multiply(5);
+                
+                    console.log(addTwo(5));
+                    console.log(addTen(5));
+                
+                    var result = multiplyByThree(addTwo(4));
+                    console.log(result);
+                
+                    console.log(multiplyByFive(2));
+                    console.log(multiplyByFive(3));
+                }
+            </code>
+        </pre>
+        <button onclick="runExample()">Run Example</button>
+        <div id="operations"></div>
+        <br />
+        <a
+          target="_blank"
+          href="https://javascript.info/currying-partials"
+          class="summary-link"
+          >Link page</a
+        >
+      </div>
+      <div class="summary">
+        <h2 class="summary-title">Web APIs: Drawing Graphics</h2>
+
+        <div class="summary-content">
+          This article introduces the <\canvas> element and its associated
+          Canvas API, which provide powerful graphics programming tools for
+          creating 2D animations, games, and data visualizations on the web. The
+          article discusses the history and limitations of graphics on the web,
+          including the introduction of SVG and the development of WebGL for 3D
+          graphics.
+        </div>
+        <pre>
+            <code class="language-javascript">
+              const canvas = document.getElementById('canvas');
+              const ctx = canvas.getContext('2d');
+          
+              let x = 0;
+              let y = 200;
+          
+              function drawCircle() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+          
+                ctx.beginPath();
+                ctx.arc(x, y, 50, 0, Math.PI * 2);
+                ctx.fillStyle = 'red';
+                ctx.fill();
+          
+                x += 5;
+          
+                if (x > canvas.width + 50) {
+                  x = -50;
+                }
+          
+                requestAnimationFrame(drawCircle);
+              }
+          
+              drawCircle();
+            </code>
+        </pre>
+        <canvas id="canvas" width="400" height="400"></canvas>
+        <br />
+        <a
+          target="_blank"
+          href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Drawing_graphics"
+          class="summary-link"
+          >Link page</a
+        >
+      </div>
+    </div>
+    <script>
+      Prism.highlightAll();
+    </script>
+  </body>
+</html>

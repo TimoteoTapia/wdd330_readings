@@ -157,6 +157,39 @@
         >
       </div>
     </div>
+    <pre>
+      <code class="language-javascript"> 
+      <\button id="animateBtn">Animate<\/button>
+      <\div id="box"><\/div>
+          #box {
+              width: 100px;
+              height: 100px;
+              background-color: blue;
+              transition-property: background-color, transform;
+              transition-duration: 1s;
+          }
+          //it will animate when animate class exist
+          #box.animate {
+              background-color: red;
+              transform: translateX(200px) rotate(180deg);
+          }
+      
+          //Code that I am using
+          const animateBtn = document.getElementById('animateBtn');
+          const box = document.getElementById('box');
+          
+          //add the new class "animate" and trigger the animation
+          animateBtn.addEventListener('click', function () {
+              box.classList.add('animate');
+          });
+
+          //remove the class allowing repeat the animation
+          box.addEventListener('transitionend', function () {
+              box.classList.remove('animate');
+          });
+          
+      </code>
+      </pre>
     <script>
       Prism.highlightAll();
     </script>
