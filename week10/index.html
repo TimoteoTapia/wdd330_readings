@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism-tomorrow.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+    <script src="js/main.js" defer></script>
+    <title>Week 10 | Notes</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-image: url(../week10/images/background.avif);
+        background-size: cover;
+        background-position: center;
+        padding: 20px;
+        color: #ffffff;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: rgba(0, 0, 0, 0.85);
+        padding: 40px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .summary {
+        margin-bottom: 40px;
+      }
+      .summary-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      .summary-link {
+        text-decoration: none;
+        font-size: 14px;
+        margin-bottom: 10px;
+        opacity: 0.8;
+        color: rgb(45, 254, 73);
+      }
+      .summary-content {
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 20px;
+      }
+      pre {
+        background-color: #111;
+        color: #fff;
+        padding: 10px;
+        overflow: auto;
+        border-radius: 5px;
+      }
+
+      pre code {
+        font-size: 14px;
+      }
+
+      .token.comment,
+      .token.prolog,
+      .token.doctype,
+      .token.cdata {
+        color: #808080;
+      }
+
+      .token.punctuation {
+        color: #ccc;
+      }
+
+      .token.selector,
+      .token.tag {
+        color: #e06c75;
+      }
+
+      .token.property,
+      .token.boolean,
+      .token.number,
+      .token.constant,
+      .token.symbol,
+      .token.attr-name,
+      .token.deleted {
+        color: #d19a66;
+      }
+
+      .token.string,
+      .token.char,
+      .token.attr-value,
+      .token.builtin,
+      .token.inserted {
+        color: #98c379;
+      }
+
+      .token.operator,
+      .token.entity,
+      .token.url,
+      .language-css .token.string,
+      .style .token.string {
+        color: #d19a66;
+      }
+
+      .token.atrule,
+      .token.attr-value,
+      .token.keyword {
+        color: #c678dd;
+      }
+
+      .token.function,
+      .token.class-name {
+        color: #61afef;
+      }
+
+      .token.regex,
+      .token.important,
+      .token.variable {
+        color: #e06c75;
+      }
+
+      .token.bold {
+        font-weight: bold;
+      }
+
+      .token.italic {
+        font-style: italic;
+      }
+
+      .token.entity {
+        cursor: help;
+      }
+    </style>
+    <style></style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Reading Notes</h1>
+
+      <div class="summary">
+        <h2 class="summary-title">
+          An Introduction to Functions, Execution Context and the Call Stack
+        </h2>
+
+        <div class="summary-content">
+          The principal point taught in this video is the concept of execution
+          context in JavaScript. It explains how JavaScript executes code by
+          going through it line by line, storing variables and functions in
+          memory, and executing them in a thread of execution. The speaker
+          emphasizes the importance of understanding execution context as the
+          foundation for understanding the language and its more complex
+          aspects.
+
+          <pre>
+            <code class="language-javascript">
+                function multiplyByTwo(num) {
+                    return num * 2;
+                  }
+              
+                  function calculate() {
+                    var input = document.getElementById("numberInput").value;
+                    var output = multiplyByTwo(input);
+                    document.getElementById("result").textContent = "Result: " + output;
+                  }
+            </code>
+        </pre>
+          <h4>JavaScript Execution Context Example</h4>
+          <input type="number" id="numberInput" placeholder="Enter a number" />
+          <button onclick="calculate()">Calculate</button>
+          <p id="result"></p>
+        </div>
+        <br />
+        <a
+          target="_blank"
+          href="https://www.youtube.com/watch?v=exrc_rLj5iw"
+          class="summary-link"
+          >Link page</a
+        >
+      </div>
+      <h2 class="summary-title">
+        How to Understand Callbacks & Higher Order Functions
+      </h2>
+      <div class="summary-content">
+        The video emphasizes the importance of understanding callbacks and
+        higher-order functions in JavaScript to write more efficient and
+        reusable code. It highlights the benefits of generalizing functions and
+        shows how they can be applied to solve problems more effectively.
+      </div>
+      <pre>
+        <code class="language-javascript"> 
+            // Define a higher-order function called 'map'
+            function map(arr, fn) {
+              var result = [];
+              for (var i = 0; i < arr.length; i++) {
+                result.push(fn(arr[i]));
+              }
+              return result;
+            }
+        
+            // Define a regular function to be used with 'map'
+            function double(num) {
+              return num * 2;
+            }
+        
+            // Example function to execute the code
+            function executeCode() {
+              // Example usage of 'map' function
+              var numbers = [1, 2, 3, 4, 5];
+              var doubledNumbers = map(numbers, double);
+        
+              // Output the result to the console
+              console.log(doubledNumbers);
+        
+              // Display the result on the webpage
+              document.getElementById('output').innerHTML = "<p>Original Numbers: " + numbers.join(", ") + "</p>"
+                + "<p>Doubled Numbers: " + doubledNumbers.join(", ") + "</p>";
+            }
+        </code>
+        </pre>
+      <h1>Higher-Order Functions Example</h1>
+      <button onclick="executeCode()">Execute</button>
+      <div id="output"></div>
+      <br />
+      <a
+        target="_blank"
+        href="https://www.youtube.com/watch?v=viQz4nUUnpw"
+        class="summary-link"
+        >Link page</a
+      >
+    </div>
+    <script>
+      Prism.highlightAll();
+    </script>
+  </body>
+</html>
